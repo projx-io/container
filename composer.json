@@ -8,14 +8,15 @@
   ],
   "require-dev": {
     "phpunit/phpunit": "*",
-    "mockery/mockery": "*"
+    "mockery/mockery": "*",
+    "phpspec/phpspec": "^2.4"
   },
   "autoload": {
     "psr-4": {
       "ProjxIO\\Container\\": "src"
-    }
-  },
-  "require": {
-    "phpspec/phpspec": "^2.4"
+    },
+    "files": [
+      "src/collect.php"
+    ]
   }
 }
