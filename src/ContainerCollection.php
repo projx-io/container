@@ -14,7 +14,7 @@ class ContainerCollection extends ContainerMap implements Collection
      */
     public function keys()
     {
-        return new ContainerCollection(new ArrayReferenceContainer(array_keys($this->items())));
+        return collect(array_keys($this->items()));
     }
 
     /**
@@ -22,7 +22,7 @@ class ContainerCollection extends ContainerMap implements Collection
      */
     public function values()
     {
-        return new ContainerCollection(new ArrayReferenceContainer(array_values($this->items())));
+        return collect(array_values($this->items()));
     }
 
     /**
@@ -30,7 +30,7 @@ class ContainerCollection extends ContainerMap implements Collection
      */
     public function unique()
     {
-        return new ContainerCollection(new ArrayReferenceContainer(array_unique($this->items())));
+        return collect(array_unique($this->items()));
     }
 
     /**
@@ -38,7 +38,7 @@ class ContainerCollection extends ContainerMap implements Collection
      */
     public function intersect($items = [])
     {
-        return new ContainerCollection(new ArrayReferenceContainer(array_intersect($this->items(), $items)));
+        return collect(array_intersect($this->items(), $items));
     }
 
     /**
@@ -46,7 +46,7 @@ class ContainerCollection extends ContainerMap implements Collection
      */
     public function difference($items = [])
     {
-        return new ContainerCollection(new ArrayReferenceContainer(array_diff($this->items(), $items)));
+        return collect(array_diff($this->items(), $items));
     }
 
     /**
@@ -54,7 +54,7 @@ class ContainerCollection extends ContainerMap implements Collection
      */
     public function concat($items = [])
     {
-        return new ContainerCollection(new ArrayReferenceContainer(array_merge($this->items(), $items)));
+        return collect(array_merge($this->items(), $items));
     }
 
     /**
@@ -62,7 +62,7 @@ class ContainerCollection extends ContainerMap implements Collection
      */
     public function select($keys = [])
     {
-        return (new ContainerCollection(new ArrayReferenceContainer($keys)))
+        return collect($keys)
             ->rename(function ($key) {
                 return $key;
             })
@@ -79,7 +79,7 @@ class ContainerCollection extends ContainerMap implements Collection
         $keys = array_flip($keys);
         $items = array_diff_key($this->select($keys)->items(), $keys);
         $items = array_merge($keys, $items);
-        return new ContainerCollection(new ArrayReferenceContainer($items));
+        return collect($items);
     }
 
     /**
@@ -100,7 +100,7 @@ class ContainerCollection extends ContainerMap implements Collection
     public function map(callable $callback)
     {
         $index = 0;
-        $items = new ContainerCollection(new ArrayReferenceContainer());
+        $items = collect();
         foreach ($this->items() as $key => $value) {
             $items->put($key, call_user_func($callback, $value, $key, $index++));
         }
@@ -131,7 +131,7 @@ class ContainerCollection extends ContainerMap implements Collection
     public function filter(callable $callback)
     {
         $index = 0;
-        $items = new ContainerCollection(new ArrayReferenceContainer());
+        $items = collect();
         foreach ($this->items() as $key => $value) {
             if (call_user_func($callback, $value, $key, $index++)) {
                 $items->put($key, $value);
@@ -147,7 +147,7 @@ class ContainerCollection extends ContainerMap implements Collection
     {
         $items = $this->items();
         uasort($items, $callback);
-        return new ContainerCollection(new ArrayReferenceContainer($items));
+        return collect($items);
     }
 
     /**
@@ -169,7 +169,7 @@ class ContainerCollection extends ContainerMap implements Collection
                 return $key;
             })
             ->map(function () {
-                return new ContainerCollection(new ArrayReferenceContainer());
+                return collect();
             });
 
         $keys->each(function ($group, $key) use ($groups) {
@@ -185,7 +185,7 @@ class ContainerCollection extends ContainerMap implements Collection
     public function rename(callable $callback)
     {
         $index = 0;
-        $items = new ContainerCollection(new ArrayReferenceContainer());
+        $items = collect();
         foreach ($this->items() as $key => $value) {
             $items->put(call_user_func($callback, $value, $key, $index++), $value);
         }
