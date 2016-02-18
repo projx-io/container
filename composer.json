@@ -14,5 +14,8 @@
     "psr-4": {
       "ProjxIO\\Container\\": "src"
     }
+  },
+  "require": {
+    "phpspec/phpspec": "^2.4"
   }
 }

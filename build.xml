@@ -55,9 +55,11 @@
     <target name="phpspec">
         <exec executable="${phpspec}">
             <arg value="run"/>
+            <arg value="--format"/>
+            <arg value="dot"/>
         </exec>
     </target>
 
     <target name="du" depends="composer-dump-autoload"/>
-    <target name="test" depends="phpunit"/>
+    <target name="test" depends="phpunit,phpspec"/>
 </project>

@@ -2,13 +2,8 @@
 
 namespace ProjxIO\Container;
 
-interface Container
+interface Container extends ItemContainer
 {
-    /**
-     * @return array
-     */
-    public function items();
-
     /**
      * @param mixed $key
      * @param mixed $value
