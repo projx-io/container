@@ -48,12 +48,12 @@
     </target>
 
     <target name="phpunit">
-        <exec executable="${phpunit}">
+        <exec executable="${phpunit}" failifexecutionfails="true" failonerror="true">
         </exec>
     </target>
 
     <target name="phpspec">
-        <exec executable="${phpspec}">
+        <exec executable="${phpspec}" failifexecutionfails="true" failonerror="true">
             <arg value="run"/>
             <arg value="--format"/>
             <arg value="dot"/>

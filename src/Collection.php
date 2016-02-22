@@ -6,7 +6,7 @@ use ArrayAccess;
 use Countable;
 use JsonSerializable;
 
-interface Collection extends ItemContainer, Map, Set, JsonSerializable, Countable, ArrayAccess
+interface Collection extends ItemContainer, Map, Set, Countable, ArrayAccess
 {
     /**
      * @return Collection

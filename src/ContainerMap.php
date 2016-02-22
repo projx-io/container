@@ -68,4 +68,12 @@ class ContainerMap implements Map
     {
         $this->items->delete($key);
     }
+
+    /**
+     * @inheritDoc
+     */
+    function jsonSerialize()
+    {
+        return $this->items();
+    }
 }
