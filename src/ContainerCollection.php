@@ -259,4 +259,36 @@ class ContainerCollection extends ContainerMap implements Collection
     {
         return $this->items();
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function offsetExists($key)
+    {
+        return $this->has($key);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function offsetGet($key)
+    {
+        return $this->get($key);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function offsetSet($key, $value)
+    {
+        $this->put($key, $value);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function offsetUnset($key)
+    {
+        $this->delete($key);
+    }
 }
