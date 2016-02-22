@@ -2,7 +2,10 @@
 
 namespace ProjxIO\Container;
 
-interface Collection extends ItemContainer, Map, Set
+use Countable;
+use JsonSerializable;
+
+interface Collection extends ItemContainer, Map, Set, JsonSerializable, Countable
 {
     /**
      * @return Collection

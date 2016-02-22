@@ -17,6 +17,17 @@ class ContainerMap implements Map
         $this->items = $items;
     }
 
+    public function __get($key)
+    {
+        return $this->get($key);
+    }
+
+    public function __set($key, $value)
+    {
+        $this->put($key, $value);
+        return $value;
+    }
+
     /**
      * @inheritdoc
      */

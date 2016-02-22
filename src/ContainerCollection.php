@@ -243,4 +243,20 @@ class ContainerCollection extends ContainerMap implements Collection
     {
         $this->delete($this->keys()->get($this->indexOf($value)));
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function count()
+    {
+        return count($this->items());
+    }
+
+    /**
+     * @inheritDoc
+     */
+    function jsonSerialize()
+    {
+        return $this->items();
+    }
 }
