@@ -42,4 +42,12 @@ class ArrayReferenceContainer implements Container
         unset($this->items[$key]);
         return $this;
     }
+
+    /**
+     * @inheritDoc
+     */
+    function jsonSerialize()
+    {
+        return $this->items();
+    }
 }

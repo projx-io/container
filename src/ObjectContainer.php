@@ -42,4 +42,12 @@ class ObjectContainer implements Container
     {
         unset($this->items->{$key});
     }
+
+    /**
+     * @inheritDoc
+     */
+    function jsonSerialize()
+    {
+        return $this->items;
+    }
 }

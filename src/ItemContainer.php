@@ -2,7 +2,9 @@
 
 namespace ProjxIO\Container;
 
-interface ItemContainer
+use JsonSerializable;
+
+interface ItemContainer extends JsonSerializable
 {
     /**
      * @return array
